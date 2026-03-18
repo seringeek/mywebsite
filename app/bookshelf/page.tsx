@@ -4,7 +4,6 @@ import { createClient } from "@/lib/supabase/server"
 import { Badge } from "@/components/ui/badge"
 import { BookOpen, Star } from "lucide-react"
 
-export const dynamic = "force-dynamic"
 
 export default async function BookshelfPage() {
   const supabase = await createClient()

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "1",
+    "title": "Example Project",
+    "description": "A brief description of what this project does and why it matters.",
+    "category": "full_blown",
+    "tag": "Product",
+    "date_range": "2024 – Present",
+    "url": "https://example.com"
+  }
+]

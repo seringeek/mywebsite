@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "name": "Notion",
+    "description": "All-in-one workspace for notes and docs.",
+    "category": "Productivity",
+    "url": "https://notion.so"
+  },
+  {
+    "id": "2",
+    "name": "Figma",
+    "description": "Collaborative interface design tool.",
+    "category": "Design",
+    "url": "https://figma.com"
+  }
+]

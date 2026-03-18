@@ -1,20 +1,11 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { createClient } from "@/lib/supabase/server"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { ExternalLink } from "lucide-react"
+import works from "@/data/proof-of-work.json"
 
-export const dynamic = "force-dynamic"
-
-export default async function ProofOfWorkPage() {
-  const supabase = await createClient()
-
-  const { data: works } = await supabase
-    .from("proof_of_work")
-    .select("*")
-    .order("created_at", { ascending: false })
-
+export default function ProofOfWorkPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Navigation />
@@ -25,7 +16,7 @@ export default async function ProofOfWorkPage() {
         </p>
 
         <div className="space-y-6">
-          {works && works.length > 0 ? (
+          {works.length > 0 ? (
             works.map((work) => (
               <div key={work.id} className="border-b border-border pb-6 last:border-0">
                 <div className="flex items-start justify-between gap-4">
