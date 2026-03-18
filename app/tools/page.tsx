@@ -1,28 +1,16 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { createClient } from "@/lib/supabase/server"
-import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { Wrench, ExternalLink } from "lucide-react"
+import toolsData from "@/data/tools.json"
 
-
-export default async function ToolsPage() {
-  const supabase = await createClient()
-
-  const { data: tools } = await supabase
-    .from("tools")
-    .select("*")
-    .order("category", { ascending: true })
-
-  // Group tools by category
-  const groupedTools = tools?.reduce((acc, tool) => {
+export default function ToolsPage() {
+  const groupedTools = toolsData.reduce((acc, tool) => {
     const category = tool.category || "Other"
-    if (!acc[category]) {
-      acc[category] = []
-    }
+    if (!acc[category]) acc[category] = []
     acc[category].push(tool)
     return acc
-  }, {} as Record<string, typeof tools>)
+  }, {} as Record<string, typeof toolsData>)
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -33,12 +21,12 @@ export default async function ToolsPage() {
           Software, apps, and tools I use daily for work and life.
         </p>
 
-        {groupedTools && Object.keys(groupedTools).length > 0 ? (
+        {Object.keys(groupedTools).length > 0 ? (
           Object.entries(groupedTools).map(([category, categoryTools]) => (
             <div key={category} className="mb-8">
               <h2 className="text-lg font-semibold text-foreground mb-4">{category}</h2>
               <div className="grid gap-3">
-                {categoryTools?.map((tool) => (
+                {categoryTools.map((tool) => (
                   <div
                     key={tool.id}
                     className="flex items-center gap-4 p-3 rounded-lg border border-border bg-card hover:bg-secondary/30 transition-colors"

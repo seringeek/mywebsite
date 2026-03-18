@@ -1,19 +1,11 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { createClient } from "@/lib/supabase/server"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { FileText, ExternalLink } from "lucide-react"
+import summaries from "@/data/summaries.json"
 
-
-export default async function SummariesPage() {
-  const supabase = await createClient()
-
-  const { data: summaries } = await supabase
-    .from("summaries")
-    .select("*")
-    .order("created_at", { ascending: false })
-
+export default function SummariesPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Navigation />
@@ -24,7 +16,7 @@ export default async function SummariesPage() {
         </p>
 
         <div className="space-y-4">
-          {summaries && summaries.length > 0 ? (
+          {summaries.length > 0 ? (
             summaries.map((summary) => (
               <div
                 key={summary.id}
