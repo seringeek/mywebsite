@@ -33,13 +33,17 @@ jobs:
           node-version: "20"
           cache: "pnpm"
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        id: pages
+
       - name: Install dependencies
         run: pnpm install
 
       - name: Build
         run: pnpm build
         env:
-          NEXT_PUBLIC_BASE_PATH: /mywebsite
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
