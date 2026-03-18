@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { FileText, ExternalLink } from "lucide-react"
 
-export const dynamic = "force-dynamic"
 
 export default async function SummariesPage() {
   const supabase = await createClient()

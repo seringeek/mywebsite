@@ -33,10 +33,9 @@ export function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("projects")
   const router = useRouter()
 
-  const handleLogout = async () => {
-    await fetch("/api/admin/logout", { method: "POST" })
+  const handleLogout = () => {
+    sessionStorage.removeItem("admin_authenticated")
     router.push("/admin/login")
-    router.refresh()
   }
 
   return (

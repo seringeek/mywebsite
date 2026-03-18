@@ -3,7 +3,6 @@ import { Footer } from "@/components/footer"
 import { createClient } from "@/lib/supabase/server"
 import { ProjectTabs } from "@/components/project-tabs"
 
-export const dynamic = "force-dynamic"
 
 export default async function SideProjectsPage() {
   const supabase = await createClient()
