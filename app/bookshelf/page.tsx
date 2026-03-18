@@ -1,18 +1,10 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { createClient } from "@/lib/supabase/server"
 import { Badge } from "@/components/ui/badge"
 import { BookOpen, Star } from "lucide-react"
+import books from "@/data/bookshelf.json"
 
-
-export default async function BookshelfPage() {
-  const supabase = await createClient()
-
-  const { data: books } = await supabase
-    .from("bookshelf")
-    .select("*")
-    .order("created_at", { ascending: false })
-
+export default function BookshelfPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Navigation />
@@ -23,7 +15,7 @@ export default async function BookshelfPage() {
         </p>
 
         <div className="grid gap-4">
-          {books && books.length > 0 ? (
+          {books.length > 0 ? (
             books.map((book) => (
               <div
                 key={book.id}
